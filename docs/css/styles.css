@@ -1,0 +1,306 @@
+:root {
+    /* Light Mode Variables */
+    --bg-color: #ffffff;
+    --navbar-bgcolor: teal; /* Pink */
+    --text-color: #000000;
+    --hover-color: #0fc4ec;
+    --theme-switch-icon-color: #000000; /* Black for light mode icons */
+    --theme-switch-hover-bg: #e0e0e0; /* Lighter grey for light mode hover */
+    --card-bg-color: #d0f6ff; /* Bootstrap's bg-light */
+    --card-shadow-color: rgba(0, 0, 0, 0.1);
+    --card-text-color: #000000; /* Added for direct control over card text */
+}
+
+/* CHANGE THIS FROM body.darkmode to html.darkmode */
+html.darkmode {
+    /* Dark Mode Variables */
+    --bg-color: #151c20; /* Dark blue-grey */
+    --navbar-bgcolor: #1d63ed; /* Darker blue */
+    --text-color: #ffffff;
+    --hover-color: #a7e6ff; /* Lighter blue for dark mode hover */
+    --theme-switch-icon-color: #ffffff; /* White for dark mode icons */
+    --theme-switch-hover-bg: #333333; /* Darker grey for dark mode hover */
+    --card-bg-color: #2a343b; /* Darker card background */
+    --card-shadow-color: rgba(0, 0, 0, 0.3);
+    --card-text-color: #ffffff; /* Added for direct control over card text */
+}
+
+body {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    /* Main body transitions for background and text color */
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* --- Navigation Bar --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background: var(--navbar-bgcolor);
+    box-shadow: 0 2px 8px var(--card-shadow-color);
+    /* Nav bar background and shadow transition */
+    transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+
+nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--text-color);
+    /* Nav links text color transition */
+    transition: color 0.3s ease;
+}
+
+nav a:hover,
+nav a[aria-current="page"] {
+    color: var(--hover-color);
+}
+
+#theme-switch {
+    height: 40px;
+    width: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    /* Theme switch background and shadow transition */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#theme-switch:hover {
+    background-color: var(--theme-switch-hover-bg);
+    box-shadow: 0 0 12px var(--theme-switch-hover-bg);
+}
+
+#theme-switch svg {
+    fill: var(--theme-switch-icon-color);
+    /* SVG icon fill color transition */
+    transition: opacity 0.3s ease, fill 0.3s ease;
+}
+
+/* CHANGE THESE FROM body.darkmode to html.darkmode */
+/* Hide sun icon in dark mode, show moon icon */
+html.darkmode #theme-switch svg:first-child {
+    display: none;
+}
+
+/* Hide moon icon in light mode, show sun icon */
+html:not(.darkmode) #theme-switch svg:last-child {
+    display: none;
+}
+
+/* --- Main Content Sections --- */
+main {
+    padding-top: 90px;
+}
+
+.hero-section {
+    padding: 100px 5% 40px;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: var(--text-color);
+    /* Heading color transition */
+    transition: color 0.5s ease;
+}
+
+.tagline {
+    font-size: 1.25rem;
+    color: var(--text-color);
+    max-width: 700px;
+    margin: 0 auto 30px;
+    /* Tagline color transition */
+    transition: color 0.5s ease;
+}
+
+.intro-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 5%;
+}
+
+.intro-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    max-width: 1200px;
+    text-align: center;
+}
+
+.intro-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 700px;
+    /* Intro text color transition */
+    transition: color 0.5s ease;
+}
+
+.agent-img {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--card-shadow-color);
+    /* Image shadow transition */
+    transition: box-shadow 0.5s ease;
+}
+
+/* --- Contact Page Specific Styles --- */
+.contact-info-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 5%;
+}
+
+.contact-card {
+    background-color: var(--card-bg-color) !important;
+    color: var(--card-text-color) !important;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px var(--card-shadow-color);
+    padding: 30px;
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+    /* Card background, text, and shadow transition */
+    transition: background-color 0.5s ease, box-shadow 0.5s ease, color 0.5s ease;
+}
+
+.contact-card .card-title {
+    color: var(--card-text-color);
+    font-size: 2rem;
+    margin-bottom: 25px;
+    /* Card title color transition */
+    transition: color 0.5s ease;
+}
+
+.contact-card .card-text {
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+    /* Card text color transition (though parent `color` usually handles this) */
+    transition: color 0.5s ease;
+}
+
+.contact-card a {
+    color: var(--navbar-bgcolor);
+    text-decoration: none;
+    font-weight: bold;
+    /* Card link color transition */
+    transition: color 0.3s ease;
+}
+
+.contact-card a:hover {
+    color: var(--hover-color);
+    text-decoration: underline;
+}
+
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--hover-color); 
+}
+
+/* --- Responsive Adjustments --- */
+@media (min-width: 768px) {
+    nav {
+        padding: 20px 10%;
+    }
+
+    #theme-switch {
+        right: 10%;
+    }
+
+    .hero-section {
+        padding: 120px 10% 60px;
+    }
+
+    .hero-section h1 {
+        font-size: 3.8rem;
+    }
+
+    .tagline {
+        font-size: 1.4rem;
+    }
+
+    .intro-section {
+        padding: 60px 10%;
+    }
+
+    .intro-content {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .intro-text {
+        max-width: 600px;
+    }
+
+    .agent-img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .contact-info-section {
+        padding: 60px 10%;
+    }
+}
+
+@media (min-width: 992px) {
+    .hero-section h1 {
+        font-size: 4.5rem;
+    }
+
+    .tagline {
+        font-size: 1.5rem;
+    }
+
+    .intro-content {
+        gap: 60px;
+    }
+}
