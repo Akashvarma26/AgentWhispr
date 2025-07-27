@@ -1,19 +1,46 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-// Firebase Config
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-// Init Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+let auth, db;
 
-// Button handler
-const signupBtn = document.getElementById("signupbtn");
+// Load Firebase config securely from FastAPI backend
+async function loadFirebase() {
+  try {
+    const response = await fetch("http://localhost:8000/firebase-config");
+    const firebaseConfig = await response.json();
 
-signupBtn.addEventListener("click", function (event) {
+    if (!firebaseConfig.apiKey) {
+      throw new Error("Invalid Firebase config");
+    }
+
+    const app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    db = getFirestore(app);
+
+    console.log("✅ Firebase initialized");
+  } catch (err) {
+    console.error("❌ Failed to load Firebase config:", err);
+    alert("Could not initialize Firebase.");
+  }
+}
+
+await loadFirebase();
+
+// Email and Password Signup
+document.getElementById("signupbtn").addEventListener("click", async (event) => {
   event.preventDefault();
 
   const fullname = document.getElementById("name").value.trim();
@@ -22,7 +49,6 @@ signupBtn.addEventListener("click", function (event) {
   const confirmPassword = document.getElementById("confirm-password").value;
   const statusDiv = document.getElementById("Status-password");
 
-  // Password Validation
   if (password !== confirmPassword) {
     statusDiv.innerText = "❌ Passwords do not match";
     statusDiv.style.color = "red";
@@ -35,41 +61,34 @@ signupBtn.addEventListener("click", function (event) {
     return;
   }
 
-  // Create user
-  createUserWithEmailAndPassword(auth, email, password)
-    .then(async (userCredential) => {
-      const user = userCredential.user;
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
 
-      // Update display name
-      await updateProfile(user, {
-        displayName: fullname
-      });
+    await updateProfile(user, { displayName: fullname });
 
-      // Save user data in Firestore
-      await setDoc(doc(db, "users", user.uid), {
-        uid: user.uid,
-        email: user.email,
-        fullname: fullname,
-        createdAt: new Date().toISOString()
-      });
-
-      alert("✅ New user created! Now login using the same credentials.");
-      window.location.href = "login.html";
-    })
-    .catch((error) => {
-      statusDiv.innerText = "❌ " + error.message;
-      statusDiv.style.color = "red";
+    await setDoc(doc(db, "users", user.uid), {
+      uid: user.uid,
+      email: user.email,
+      fullname: fullname,
+      createdAt: new Date().toISOString()
     });
+
+    alert("✅ New user created! Now login using the same credentials.");
+    window.location.href = "login.html";
+  } catch (error) {
+    statusDiv.innerText = "❌ " + error.message;
+    statusDiv.style.color = "red";
+  }
 });
 
-const provider = new GoogleAuthProvider();
-
+// Google Auth
 document.getElementById("googleauth").addEventListener("click", async () => {
   try {
+    const provider = new GoogleAuthProvider();
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
 
-    // Optional: save to Firestore (if first time)
     const userDocRef = doc(db, "users", user.uid);
     const userSnapshot = await getDoc(userDocRef);
 
