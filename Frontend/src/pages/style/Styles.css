@@ -185,17 +185,20 @@ main {
 }
 
 .contact-card {
-    background-color: var(--card-bg-color) !important;
-    color: var(--card-text-color) !important;
+    background-color: var(--card-bg-color) ;
+    color: var(--card-text-color) ;
     border: none;
     border-radius: 10px;
     box-shadow: 0 6px 20px var(--card-shadow-color);
     padding: 30px;
-    max-width: 450px;
-    width: 100%;
+    width: 150% !important;          /* takes 90% of screen width on mobile */
+    max-width: 900px !important;    /* but won’t exceed 600px on big screens */
+    margin: 50px auto !important;   /* centers horizontally */
     text-align: center;
-    /* Card background, text, and shadow transition */
-    transition: background-color 0.5s ease, box-shadow 0.5s ease, color 0.5s ease;
+    /* Smooth transitions */
+    transition: background-color 0.5s ease, 
+                box-shadow 0.5s ease, 
+                color 0.5s ease;
 }
 
 .contact-card .card-title {
@@ -228,14 +231,16 @@ main {
 
 
 .form-input {
-  width: 100%;
-  padding: 10px;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 12px 15px;
   margin-top: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
   background-color: var(--bg-color);
   color: var(--text-color);
+  box-sizing: border-box;
   transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
@@ -243,6 +248,25 @@ main {
   outline: none;
   border-color: var(--hover-color); 
 }
+
+
+.login-card {
+    background-color: var(--card-bg-color);
+    color: var(--card-text-color);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px var(--card-shadow-color);
+    padding: 30px 120px;
+    width: 99.5% !important;        /* maximum screen width */
+    max-width: none !important;     /* no width limit */
+    margin: 10px auto !important;   /* minimal margins */
+    text-align: center;
+    box-sizing: border-box;
+    transition: background-color 0.5s ease, 
+                box-shadow 0.5s ease, 
+                color 0.5s ease;
+}
+
 
 /* --- Responsive Adjustments --- */
 @media (min-width: 768px) {

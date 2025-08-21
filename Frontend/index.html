@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="./defpfp.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <title>Agent Whispr</title>
+  <style>
+    /* Critical CSS to prevent flash - inline the essential dark mode styles */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+    }
+
+    html.darkmode {
+      --bg-color: #151c20;
+      --text-color: #ffffff;
+    }
+
+    body {
+      background-color: var(--bg-color) !important;
+      color: var(--text-color) !important;
+      margin: 0;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+  </style>
+  <script>
+    // Apply dark mode immediately before any content renders
+    (function () {
+      const savedTheme = localStorage.getItem('darkmode');
+      if (savedTheme === 'active') {
+        document.documentElement.classList.add('darkmode');
+      }
+    })();
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>

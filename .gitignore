@@ -6,6 +6,11 @@ dist/
 wheels/
 *.egg-info
 
+# Vscode generated files
+.vscode/
+
 # Virtual environments
 .venv
 .env
+.env.local
+Frontend/node_modules/
