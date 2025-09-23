@@ -15,7 +15,7 @@ export function Whispr(){
                 <DarkModeToggle></DarkModeToggle>
                 </nav>
             </header>
-            <h1>Hello!</h1>
+            <h1  style={{ color: "var(--textclr)" }}>Hello!</h1>
         </>
     );
 }
