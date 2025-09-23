@@ -69,7 +69,9 @@ export function Whispr() {
             </h1>
             <div style={{ padding: "20px", color: "var(--textclr)" }}>
                 <p>Welcome to Agent Whispr</p>
-                
+            </div>
+            <div style={{padding:"20px"}}>
+                <button style={{boxShadow:"0 1px 1px 0 var(--navbar-bgcolor), 0 1px 1px 0 var(--navbar-bgcolor)" ,backgroundColor: "var(--navbar-bgcolor)", color: "var(--textclr)", borderRadius: 9 }}>Start talking?</button>
             </div>
         </>
     );
