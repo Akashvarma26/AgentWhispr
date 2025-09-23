@@ -30,7 +30,6 @@ export default function DarkModeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 text-2xl hover:scale-110 transition-transform"
       style={{
         background: "transparent",
         border: "none",
