@@ -26,7 +26,7 @@ export function Home(){
                 <section id="agent-whispr-section" className="intro-section">
                     <div className="intro-content">
                         <p className="intro-text">
-                            <strong>Agent Whispr</strong> is a next-generation AI agent designed to interact with you using natural voice — not just typed text. Speak your queries, and Agent Whispr listens, understands, and responds — all through seamless speech-to-text (STT) and text-to-speech (TTS) capabilities. Whether you're asking for the latest news, running advanced searches, using productivity tools, or just having a casual chat — Agent Whispr is your whisper-smart assistant with access to the internet, smart tools, and contextual memory.
+                            <strong>Agent Whispr</strong> is a Vapi cloud based AI agent designed to interact with you using natural voice — not just typed text. Speak your queries, and Agent Whispr listens, understands, and responds — all through seamless speech-to-text (STT) and text-to-speech (TTS) capabilities. Whether you're asking for the latest news, running advanced searches, using productivity tools, or just having a casual chat — Agent Whispr is your whisper-smart assistant with access to the internet, smart tools, and contextual memory.
                         </p>
                         <img className="agent-img" src="./homepage.png" alt="Agent Whispr logo" />
                     </div>
