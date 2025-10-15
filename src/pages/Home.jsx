@@ -32,6 +32,22 @@ export function Home(){
                     </div>
                 </section>
             </main>
+            <div>
+                <h3 style={{ textAlign: "center"}}>Want to use AgentWhispr?</h3>
+                <div style={{margin:"auto", width:"50%", border: "3px solid var(--navbar-bgcolor)", padding: "10px"}}>
+                    <span>Subscribe for using Agent Whispr:</span> <br />
+                    ✅ Access to Voice Agent Whispr <br />
+                    ✅ Monthly Subscription for ₹99/month<br /> <br />
+                    <button style={{
+                    padding: "10px 20px",
+                    background: "var(--navbar-bgcolor)",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                  }}>Subscribe for ₹99/month</button>
+                </div>
+            </div>
         </>
     );
 }
